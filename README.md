@@ -23,7 +23,7 @@ Paging helps manage memory efficiently by dividing it into fixed-size pages.
 git clone https://github.com/Mamatha-Kollamaram/memory-management-os.git 
 cd memory-management-os
 2. Run the program using Python:
-python memory_management.py
+python paging.py
 
 ### Expected Output
 
