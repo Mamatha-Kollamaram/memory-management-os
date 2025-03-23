@@ -56,6 +56,8 @@ Segmentation is a memory management technique that divides a process into variab
 - Uses **variable-sized** memory segments  
 - Performs **logical-to-physical address translation**  
 - Detects **segment faults** when an invalid segment or offset is accessed  
+- **Visualizes memory allocation per process**  
+- **Displays translation success vs. faults using bar graphs**  
 
 ### **How to Run the Segmentation Code**  
 
@@ -71,6 +73,10 @@ Physical Address: 680
 Segment Fault! Offset out of bounds.  
 Segment Fault! Segment not found.  
 ```
+
+Additionally, two **graphs will be generated**:
+1. **Memory allocation visualization** displaying segments per process.
+2. **Address translation performance** comparing successful translations vs. faults.
 
 ---
 
@@ -108,7 +114,8 @@ memory-management-os/
 │── virtual_memory.py        # Virtual memory system implementation  
 │── README.md                # Project documentation  
 │── example_output.txt       # Sample outputs from execution  
-│── graph_output.png         # Graph visualization of page replacement algorithms  
+│── paging_visuals.png         # Graph visualization of page replacement algorithms  
+│── segmentation_visuals.png # Graphical visualization of segmentation results  
 ```
 
 ---
@@ -140,7 +147,7 @@ memory-management-os/
    ```
 3. Commit with a meaningful message:
    ```sh
-   git commit -m "Updated paging system with graph visualization"
+   git commit -m "Updated segmentation with visualization"
    ```
 4. Push the changes to GitHub:
    ```sh
@@ -159,3 +166,4 @@ memory-management-os/
 - Adding **GUI-based visualization for memory management**  
 - Simulating **different page replacement algorithms (FIFO, LRU, Optimal)**  
 - **Implementing Working Set Model for better page replacement**  
+
