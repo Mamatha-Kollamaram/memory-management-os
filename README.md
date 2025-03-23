@@ -7,6 +7,8 @@ This project explores different memory management strategies in operating system
 - **Logical-to-Physical Address Translation**  
 - **Page Fault Handling** and **Segment Fault Detection**  
 - Performance analysis of memory management techniques  
+- **Comparison of different page replacement algorithms (FIFO, LRU, Optimal)**  
+- **Graphical representation of performance metrics**  
 
 ---
 
@@ -19,6 +21,8 @@ Paging helps manage memory efficiently by dividing it into **fixed-size pages**.
 - Dynamically allocates pages to processes  
 - Converts **logical addresses** to **physical addresses**  
 - Detects **page faults** when a page is missing  
+- Compares **FIFO, LRU, and Optimal page replacement algorithms**  
+- **Displays page faults and execution time using bar graphs**  
 
 ### **How to Run the Paging Code**  
 
@@ -34,11 +38,12 @@ Paging helps manage memory efficiently by dividing it into **fixed-size pages**.
 
 ### **Expected Output:**
 ```
-Logical Address 100 -> Physical Address 868 (Frame 3, Offset 100)  
-Logical Address 260 -> Physical Address 516 (Frame 2, Offset 4)  
-Logical Address 50 -> Physical Address 306 (Frame 1, Offset 50)  
-Page Fault! Page 0 for Process 3 not found in memory.  
+FIFO: Page Faults = 12, Execution Time = 0.00125 seconds
+LRU: Page Faults = 10, Execution Time = 0.00115 seconds
+Optimal: Page Faults = 8, Execution Time = 0.00105 seconds
 ```
+
+Additionally, a **graph will be generated** showing the performance of different algorithms.
 
 ---
 
@@ -103,6 +108,7 @@ memory-management-os/
 │── virtual_memory.py        # Virtual memory system implementation  
 │── README.md                # Project documentation  
 │── example_output.txt       # Sample outputs from execution  
+│── graph_output.png         # Graph visualization of page replacement algorithms  
 ```
 
 ---
@@ -123,6 +129,26 @@ memory-management-os/
 
 ---
 
+## **How to Contribute**  
+
+### **Committing and Pushing Changes**  
+
+1. Make changes to the code or documentation.
+2. Stage the changes:
+   ```sh
+   git add .
+   ```
+3. Commit with a meaningful message:
+   ```sh
+   git commit -m "Updated paging system with graph visualization"
+   ```
+4. Push the changes to GitHub:
+   ```sh
+   git push origin main
+   ```
+
+---
+
 ## **Contributors**  
 - **Mamatha Kollamaram**  
 
@@ -132,4 +158,4 @@ memory-management-os/
 - Implementing **TLB (Translation Lookaside Buffer) for faster address translation**  
 - Adding **GUI-based visualization for memory management**  
 - Simulating **different page replacement algorithms (FIFO, LRU, Optimal)**  
-
+- **Implementing Working Set Model for better page replacement**  
