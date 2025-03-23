@@ -38,9 +38,7 @@ Paging helps manage memory efficiently by dividing it into **fixed-size pages**.
 
 ### **Expected Output:**
 ```
-FIFO: Page Faults = 12, Execution Time = 0.00125 seconds
-LRU: Page Faults = 10, Execution Time = 0.00115 seconds
-Optimal: Page Faults = 8, Execution Time = 0.00105 seconds
+Refer to example_output.txt for detailed expected outputs.
 ```
 
 Additionally, a **graph will be generated** showing the performance of different algorithms.
@@ -68,10 +66,7 @@ python segmentation.py
 
 ### **Expected Output:**
 ```
-Physical Address: 150  
-Physical Address: 680  
-Segment Fault! Offset out of bounds.  
-Segment Fault! Segment not found.  
+Refer to example_output.txt for detailed expected outputs. 
 ```
 
 Additionally, two **graphs will be generated**:
@@ -101,9 +96,7 @@ python virtual_memory.py
 
 ### **Expected Output:**
 ```
-FIFO: Page Faults = 15, Execution Time = 0.00210 seconds  
-LRU: Page Faults = 12, Execution Time = 0.00195 seconds  
-Optimal: Page Faults = 9, Execution Time = 0.00170 seconds  
+Refer to example_output.txt for detailed expected outputs. 
 ```
 
 Additionally, **three performance graphs** will be generated, each representing an algorithm’s efficiency, displayed side by side for easy comparison.
@@ -114,14 +107,14 @@ Additionally, **three performance graphs** will be generated, each representing 
 
 ```
 memory-management-os/  
-│── paging.py                # Paging system implementation  
-│── segmentation.py          # Segmentation system implementation  
-│── virtual_memory.py        # Virtual memory system implementation  
-│── README.md                # Project documentation  
-│── example_output.txt       # Sample outputs from execution  
-│── paging_visuals.png       # Graph visualization of page replacement algorithms  
-│── segmentation_visuals.png # Graphical visualization of segmentation results  
-│── virtual_memory_graphs.png # Graphical comparison of virtual memory algorithms  
+│── paging.py                 # Paging system implementation  
+│── segmentation.py           # Segmentation system implementation  
+│── virtual_memory.py         # Virtual memory system implementation  
+│── README.md                 # Project documentation  
+│── example_output.txt        # Sample outputs from execution  
+│── paging_visuals.png        # Generated during execution (visualization of page replacement algorithms)
+│── segmentation_visuals.png  # Generated during execution (visualization of segmentation results)
+│── virtual_memory_graphs.png # Generated during execution (visualization of virtual memorypaging_visuals.png )      
 ```
 
 ---
@@ -153,7 +146,7 @@ memory-management-os/
    ```
 3. Commit with a meaningful message:
    ```sh
-   git commit -m "Updated Virtual Memory implementation and documentation"
+   git commit -m "Updated documentation and added visuals information"
    ```
 4. Push the changes to GitHub:
    ```sh
