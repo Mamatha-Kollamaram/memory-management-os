@@ -99,7 +99,7 @@ python virtual_memory.py
 Refer to example_output.txt for detailed expected outputs. 
 ```
 
-Additionally, **three performance graphs** will be generated, each representing an algorithm’s efficiency, displayed side by side for easy comparison.
+Additionally, **A performance graph** will be generated, representing performance of all the algorithms.
 
 ---
 
@@ -114,7 +114,7 @@ memory-management-os/
 │── example_output.txt        # Sample outputs from execution  
 │── paging_visuals.png        # Generated during execution (visualization of page replacement algorithms)
 │── segmentation_visuals.png  # Generated during execution (visualization of segmentation results)
-│── virtual_memory_graphs.png # Generated during execution (visualization of virtual memorypaging_visuals.png )      
+│── virtual_memory_visuals.png # Generated during execution (visualization of virtual memorypaging_visuals.png )      
 ```
 
 ---
