@@ -108,4 +108,7 @@ plt.ylabel("Execution Time (s)")
 plt.title("Execution Time Comparison")
 
 plt.tight_layout()
+
+# Save the graph as a PNG file
+plt.savefig("paging_visuals.png")  # Graph visualization of page replacement algorithms
 plt.show()

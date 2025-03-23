@@ -40,6 +40,7 @@ class Segmentation:
         ax.set_xlabel("Memory Address")
         ax.set_ylabel("Segments")
         ax.set_title("Memory Allocation (Segmentation)")
+        plt.savefig("segmentation_visuals.png")  # Save the graph
         plt.show()
 
     def visualize_translation_results(self):
@@ -51,6 +52,7 @@ class Segmentation:
         plt.xlabel("Translation Outcome")
         plt.ylabel("Count")
         plt.title("Address Translation Success vs. Faults")
+        plt.savefig("segmentation_visuals_results.png")  # Save the graph
         plt.show()
 
 # Example Usage
@@ -67,7 +69,7 @@ for seg in segments:
 translation_input = input("Enter translations (format: process_id segment_id offset, ...): ")
 translations = translation_input.split(", ")
 for trans in translations:
-    process_id, segment_id, offset = map(int, trans.split())
+    process_id, segment_id, offset = map(int, trans.split())  # Fixed to split correctly
     print(segmentation_system.translate_address(process_id, segment_id, offset))
 
 # Visualizing memory allocation

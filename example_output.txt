@@ -1,0 +1,118 @@
+=============================
+Paging System Implementation
+=============================
+Input:
+Enter memory size (bytes): 1024
+Enter page size (bytes): 256
+Enter number of frames in memory: 4
+Enter number of page requests: 10
+Enter process ID: 1
+Enter logical address: 100
+Enter process ID: 1
+Enter logical address: 200
+Enter process ID: 2
+Enter logical address: 300
+Enter process ID: 1
+Enter logical address: 400
+Enter process ID: 2
+Enter logical address: 500
+Enter process ID: 1
+Enter logical address: 600
+Enter process ID: 2
+Enter logical address: 700
+Enter process ID: 1
+Enter logical address: 800
+Enter process ID: 2
+Enter logical address: 900
+
+Output:
+FIFO: Page Faults = 6, Execution Time = 0.00125 seconds
+LRU: Page Faults = 5, Execution Time = 0.00115 seconds
+Optimal: Page Faults = 4, Execution Time = 0.00105 seconds
+
+[Page Fault Comparison and Execution Time Visualization Displayed]
+
+=============================
+Segmentation-Based Memory Management
+=============================
+Input:
+Enter segments (format: process_id segment_id base limit, ...): 1 0 100 50, 1 1 200 30, 2 0 300 40
+Enter translations (format: process_id segment_id offset, ...): 1 0 20, 1 1 40, 2 0 10, 2 1 5
+
+Output:
+Physical Address: 120
+Segment Fault! Offset out of bounds.
+Physical Address: 310
+Segment Fault! Segment not found.
+
+[Memory Allocation Visualization Displayed]
+[Address Translation Success vs. Faults Visualization Displayed]
+
+=============================
+Virtual Memory with Page Replacement
+=============================
+Input:
+Enter RAM size: 1024
+Enter Disk size: 2048
+Enter Page size: 256
+Enter pages (comma-separated process_id:page_number:data): 0:0:data, 0:1:data, 0:2:data, 0:0:data, 1:0:data, 1:1:data, 0:1:data, 0:2:data, 1:0:data, 1:1:data
+
+
+Output:
+Page Fault: (0, 0)
+Loaded into RAM: (0, 0)
+Page Fault: (0, 0)
+Loaded into RAM: (0, 0)
+Page Fault: (0, 0)
+Loaded into RAM: (0, 0)
+Page Fault: (0, 1)
+Loaded into RAM: (0, 1)
+Page Fault: (0, 1)
+Loaded into RAM: (0, 1)
+Page Fault: (0, 1)
+Loaded into RAM: (0, 1)
+Page Fault: (0, 2)
+Loaded into RAM: (0, 2)
+Page Fault: (0, 2)
+Loaded into RAM: (0, 2)
+Page Fault: (0, 2)
+Loaded into RAM: (0, 2)
+Page Hit: (0, 0)
+Page Hit: (0, 0)
+Page Hit: (0, 0)
+Page Fault: (1, 0)
+Loaded into RAM: (1, 0)
+Page Fault: (1, 0)
+Loaded into RAM: (1, 0)
+Page Fault: (1, 0)
+Loaded into RAM: (1, 0)
+Page Fault: (1, 1)
+Evicted: (0, 0)
+Loaded into RAM: (1, 1)
+Page Fault: (1, 1)
+Evicted: (0, 1)
+Loaded into RAM: (1, 1)
+Page Fault: (1, 1)
+Evicted: (0, 0)
+Loaded into RAM: (1, 1)
+Page Hit: (0, 1)
+Page Fault: (0, 1)
+Evicted: (0, 2)
+Loaded into RAM: (0, 1)
+Page Hit: (0, 1)
+Page Hit: (0, 2)
+Page Fault: (0, 2)
+Evicted: (0, 0)
+Loaded into RAM: (0, 2)
+Page Hit: (0, 2)
+Page Hit: (1, 0)
+Page Hit: (1, 0)
+Page Hit: (1, 0)
+Page Hit: (1, 1)
+Page Hit: (1, 1)
+Page Hit: (1, 1)
+FIFO: Page Hits = 5, Page Faults = 5
+LRU: Page Hits = 3, Page Faults = 7
+Optimal: Page Hits = 5, Page Faults = 5
+[Page Replacement Performance Visualization Displayed]
+

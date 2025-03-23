@@ -28,17 +28,22 @@ class VirtualMemory:
         key = (process_id, page_number)
         if key in self.ram:
             self.page_hits += 1
+            print(f"Page Hit: {key}")  # Debug output for page hits
             if self.algo == "LRU":  # Move accessed page to the end
                 self.page_order.remove(key)
                 self.page_order.append(key)
         else:
             self.page_faults += 1
+            print(f"Page Fault: {key}")  # Debug output for page faults
             if len(self.ram) < self.frames:
                 self.ram[key] = data
+                print(f"Loaded into RAM: {key}")  # Debug output for loading
             else:
                 evicted = self.page_order.popleft()
                 self.disk[evicted] = self.ram.pop(evicted)
+                print(f"Evicted: {evicted}")  # Debug output for eviction
                 self.ram[key] = data
+                print(f"Loaded into RAM: {key}")  # Debug output for loading
             self.page_order.append(key)
     
     def visualize_performance(self):
@@ -54,7 +59,12 @@ def run_simulation(pages, ram_size, page_size):
         lru_vm.load_page(process_id, page_number, data)
         optimal_vm.load_page(process_id, page_number, data)
     
-    return fifo_vm.visualize_performance(), lru_vm.visualize_performance(), optimal_vm.visualize_performance()
+    # Print total hits and faults for each algorithm
+    print(f"FIFO: Page Hits = {fifo_vm.page_hits}, Page Faults = {fifo_vm.page_faults}")
+    print(f"LRU: Page Hits = {lru_vm.page_hits}, Page Faults = {lru_vm.page_faults}")
+    print(f"Optimal: Page Hits = {optimal_vm.page_hits}, Page Faults = {optimal_vm.page_faults}")
+
+    return fifo_vm, lru_vm, optimal_vm
 
 def plot_results(fifo, lru, optimal):
     labels = ['Page Hits', 'Page Faults']
@@ -68,7 +78,8 @@ def plot_results(fifo, lru, optimal):
     plt.tight_layout()
     plt.show()
 
-# Run simulation
-ram_size, disk_size, page_size, pages = get_inputs()
-fifo_result, lru_result, optimal_result = run_simulation(pages, ram_size, page_size)
-plot_results(fifo_result, lru_result, optimal_result)
+# Main execution flow
+if __name__ == "__main__":
+    ram_size, disk_size, page_size, pages = get_inputs()
+    fifo_vm, lru_vm, optimal_vm = run_simulation(pages, ram_size, page_size)
+    plot_results(fifo_vm.visualize_performance(), lru_vm.visualize_performance(), optimal_vm.visualize_performance())
