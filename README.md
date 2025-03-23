@@ -89,6 +89,8 @@ Virtual memory allows a system to use **more memory than physically available** 
 - Simulates **demand paging**  
 - Handles **page faults** when a required page is not in memory  
 - Maps **logical addresses to physical memory frames**  
+- **Compares FIFO, LRU, and Optimal page replacement algorithms**  
+- **Generates comparative performance graphs for all algorithms**  
 
 ### **How to Run the Virtual Memory Code**  
 
@@ -99,9 +101,12 @@ python virtual_memory.py
 
 ### **Expected Output:**
 ```
-Page 0 of Process 1 is in RAM.  
-Page Fault! Page 2 of Process 1 not found.  
+FIFO: Page Faults = 15, Execution Time = 0.00210 seconds  
+LRU: Page Faults = 12, Execution Time = 0.00195 seconds  
+Optimal: Page Faults = 9, Execution Time = 0.00170 seconds  
 ```
+
+Additionally, **three performance graphs** will be generated, each representing an algorithm’s efficiency, displayed side by side for easy comparison.
 
 ---
 
@@ -114,8 +119,9 @@ memory-management-os/
 │── virtual_memory.py        # Virtual memory system implementation  
 │── README.md                # Project documentation  
 │── example_output.txt       # Sample outputs from execution  
-│── paging_visuals.png         # Graph visualization of page replacement algorithms  
+│── paging_visuals.png       # Graph visualization of page replacement algorithms  
 │── segmentation_visuals.png # Graphical visualization of segmentation results  
+│── virtual_memory_graphs.png # Graphical comparison of virtual memory algorithms  
 ```
 
 ---
@@ -147,7 +153,7 @@ memory-management-os/
    ```
 3. Commit with a meaningful message:
    ```sh
-   git commit -m "Updated segmentation with visualization"
+   git commit -m "Updated Virtual Memory implementation and documentation"
    ```
 4. Push the changes to GitHub:
    ```sh
@@ -166,4 +172,3 @@ memory-management-os/
 - Adding **GUI-based visualization for memory management**  
 - Simulating **different page replacement algorithms (FIFO, LRU, Optimal)**  
 - **Implementing Working Set Model for better page replacement**  
-

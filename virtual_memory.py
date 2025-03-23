@@ -1,30 +1,74 @@
+import matplotlib.pyplot as plt
+from collections import deque
+
+def get_inputs():
+    ram_size = int(input("Enter RAM size: "))
+    disk_size = int(input("Enter Disk size: "))
+    page_size = int(input("Enter Page size: "))
+    
+    process_input = input("Enter pages (comma-separated process_id:page_number:data): ")
+    pages = [tuple(p.split(':')) for p in process_input.split(',')]
+    pages = [(int(p[0]), int(p[1]), p[2]) for p in pages]
+    
+    return ram_size, disk_size, page_size, pages
+
 class VirtualMemory:
-    def __init__(self, ram_size, disk_size, page_size):
+    def __init__(self, ram_size, page_size, algo):
         self.ram_size = ram_size
-        self.disk_size = disk_size
         self.page_size = page_size
+        self.frames = ram_size // page_size
+        self.algo = algo
         self.ram = {}
         self.disk = {}
-
+        self.page_order = deque()
+        self.page_faults = 0
+        self.page_hits = 0
+    
     def load_page(self, process_id, page_number, data):
-        if len(self.ram) < self.ram_size // self.page_size:
-            self.ram[(process_id, page_number)] = data
+        key = (process_id, page_number)
+        if key in self.ram:
+            self.page_hits += 1
+            if self.algo == "LRU":  # Move accessed page to the end
+                self.page_order.remove(key)
+                self.page_order.append(key)
         else:
-            evicted = next(iter(self.ram))
-            self.disk[evicted] = self.ram.pop(evicted)  # Move to disk
-            self.ram[(process_id, page_number)] = data
+            self.page_faults += 1
+            if len(self.ram) < self.frames:
+                self.ram[key] = data
+            else:
+                evicted = self.page_order.popleft()
+                self.disk[evicted] = self.ram.pop(evicted)
+                self.ram[key] = data
+            self.page_order.append(key)
+    
+    def visualize_performance(self):
+        return self.page_hits, self.page_faults
 
-    def access_page(self, process_id, page_number):
-        if (process_id, page_number) in self.ram:
-            return f"Page {page_number} of Process {process_id} is in RAM."
-        elif (process_id, page_number) in self.disk:
-            return f"Page {page_number} of Process {process_id} is in Disk (Page Fault Occurred)."
-        else:
-            return f"Page Fault! Page {page_number} of Process {process_id} not found."
+def run_simulation(pages, ram_size, page_size):
+    fifo_vm = VirtualMemory(ram_size, page_size, "FIFO")
+    lru_vm = VirtualMemory(ram_size, page_size, "LRU")
+    optimal_vm = VirtualMemory(ram_size, page_size, "Optimal")
+    
+    for process_id, page_number, data in pages:
+        fifo_vm.load_page(process_id, page_number, data)
+        lru_vm.load_page(process_id, page_number, data)
+        optimal_vm.load_page(process_id, page_number, data)
+    
+    return fifo_vm.visualize_performance(), lru_vm.visualize_performance(), optimal_vm.visualize_performance()
 
-# Example Usage
-vm = VirtualMemory(ram_size=1024, disk_size=2048, page_size=256)
-vm.load_page(1, 0, "Data for Page 0")
-vm.load_page(1, 1, "Data for Page 1")
-print(vm.access_page(1, 0))  # Should be in RAM
-print(vm.access_page(1, 2))  # Page Fault
+def plot_results(fifo, lru, optimal):
+    labels = ['Page Hits', 'Page Faults']
+    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+    
+    for ax, (algo, data) in zip(axes, zip(['FIFO', 'LRU', 'Optimal'], [fifo, lru, optimal])):
+        ax.bar(labels, data, color=['green', 'red'])
+        ax.set_title(f'{algo} Algorithm')
+        ax.set_ylabel('Count')
+    
+    plt.tight_layout()
+    plt.show()
+
+# Run simulation
+ram_size, disk_size, page_size, pages = get_inputs()
+fifo_result, lru_result, optimal_result = run_simulation(pages, ram_size, page_size)
+plot_results(fifo_result, lru_result, optimal_result)
