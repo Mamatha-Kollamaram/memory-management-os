@@ -157,7 +157,8 @@ memory-management-os/
 
 ## **Contributors**  
 - **Mamatha Kollamaram**  
-
+- **Kandula Venkata Sivakrishna Reddy**
+- **Chinthala Sai**
 ---
 
 ## **Future Enhancements**  

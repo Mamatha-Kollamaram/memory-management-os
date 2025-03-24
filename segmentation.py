@@ -54,7 +54,7 @@ class Segmentation:
         axs[1].set_title("Address Translation Success vs. Faults")
 
         plt.tight_layout()  # Adjust layout to prevent overlap
-        plt.savefig("segmentation_visuals_combined.png")  # Save the combined graph
+        plt.savefig("segmentation_visuals.png")  # Save the combined graph
         plt.show()
 
 # Example Usage
