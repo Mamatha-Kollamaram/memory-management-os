@@ -29,30 +29,32 @@ class Segmentation:
         self.translation_results["fault"] += 1
         return "Segment Fault! Segment not found."
 
-    def visualize_memory(self):
-        fig, ax = plt.subplots()
+    def visualize_memory_and_translation(self):
+        # Create a figure with 1 row and 2 columns
+        fig, axs = plt.subplots(1, 2, figsize=(12, 6))
+
+        # Visualization of memory allocation
         y = 0
         for process_id, segments in self.segment_table.items():
             for segment in segments:
-                ax.barh(y, segment.limit, left=segment.base, color='blue', edgecolor='black')
-                ax.text(segment.base + segment.limit / 2, y, f'P{process_id}-S{segment.segment_id}', ha='center', va='center', color='white', fontsize=10)
+                axs[0].barh(y, segment.limit, left=segment.base, color='blue', edgecolor='black')
+                axs[0].text(segment.base + segment.limit / 2, y, f'P{process_id}-S{segment.segment_id}', ha='center', va='center', color='white', fontsize=10)
                 y += 1
-        ax.set_xlabel("Memory Address")
-        ax.set_ylabel("Segments")
-        ax.set_title("Memory Allocation (Segmentation)")
-        plt.savefig("segmentation_visuals.png")  # Save the graph
-        plt.show()
+        axs[0].set_xlabel("Memory Address")
+        axs[0].set_ylabel("Segments")
+        axs[0].set_title("Memory Allocation (Segmentation)")
 
-    def visualize_translation_results(self):
+        # Visualization of translation results
         labels = ["Successful Translations", "Segment Faults"]
         values = [self.translation_results["success"], self.translation_results["fault"]]
         colors = ["green", "red"]
-        plt.figure()
-        plt.bar(labels, values, color=colors)
-        plt.xlabel("Translation Outcome")
-        plt.ylabel("Count")
-        plt.title("Address Translation Success vs. Faults")
-        plt.savefig("segmentation_visuals_results.png")  # Save the graph
+        axs[1].bar(labels, values, color=colors)
+        axs[1].set_xlabel("Translation Outcome")
+        axs[1].set_ylabel("Count")
+        axs[1].set_title("Address Translation Success vs. Faults")
+
+        plt.tight_layout()  # Adjust layout to prevent overlap
+        plt.savefig("segmentation_visuals_combined.png")  # Save the combined graph
         plt.show()
 
 # Example Usage
@@ -72,8 +74,5 @@ for trans in translations:
     process_id, segment_id, offset = map(int, trans.split())  # Fixed to split correctly
     print(segmentation_system.translate_address(process_id, segment_id, offset))
 
-# Visualizing memory allocation
-segmentation_system.visualize_memory()
-
-# Visualizing translation results
-segmentation_system.visualize_translation_results()
+# Visualizing memory allocation and translation results
+segmentation_system.visualize_memory_and_translation()
