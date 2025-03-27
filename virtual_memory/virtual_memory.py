@@ -11,6 +11,7 @@ class VirtualMemorySystem(QObject):
     def __init__(self):
         super().__init__()
         self.ram_size = 0
+        self.disk_size = 0
         self.page_size = 0
         self.frames = 0
         self.reset_state()
@@ -23,8 +24,9 @@ class VirtualMemorySystem(QObject):
         self.page_hits = 0
         self.access_history = []
 
-    def configure(self, ram_size, page_size):
+    def configure(self, ram_size, disk_size, page_size):
         self.ram_size = ram_size
+        self.disk_size = disk_size
         self.page_size = page_size
         self.frames = ram_size // page_size
         self.reset_state()

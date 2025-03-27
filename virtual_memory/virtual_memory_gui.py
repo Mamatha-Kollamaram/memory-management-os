@@ -12,7 +12,7 @@ class VirtualMemoryGUI(QWidget):
 
     def init_ui(self):
         self.setWindowTitle("Virtual Memory Simulator")
-        self.setGeometry(200, 200, 600, 500)
+        self.setGeometry(200, 200, 600, 550)
 
         layout = QVBoxLayout()
         self.setStyleSheet("background-color: #E6E6FA;")  # Lavender background
@@ -21,6 +21,11 @@ class VirtualMemoryGUI(QWidget):
         self.ram_input.setPlaceholderText("Enter RAM Size (KB)")
         layout.addWidget(QLabel("RAM Size:"))
         layout.addWidget(self.ram_input)
+
+        self.disk_input = QLineEdit(self)
+        self.disk_input.setPlaceholderText("Enter Disk Size (KB)")
+        layout.addWidget(QLabel("Disk Size:"))
+        layout.addWidget(self.disk_input)
 
         self.page_size_input = QLineEdit(self)
         self.page_size_input.setPlaceholderText("Enter Page Size (KB)")
@@ -49,8 +54,10 @@ class VirtualMemoryGUI(QWidget):
 
     def run_simulation(self):
         ram_size = int(self.ram_input.text())
+        disk_size = int(self.disk_input.text())
         page_size = int(self.page_size_input.text())
-        self.vm_system.configure(ram_size, page_size)
+
+        self.vm_system.configure(ram_size, disk_size, page_size)
 
         pages = []
         raw_input = self.pages_input.toPlainText().split(",")
@@ -65,7 +72,7 @@ class VirtualMemoryGUI(QWidget):
     def display_results(self, results):
         output = ""
         for algo, data in results.items():
-            output += f"{algo}: Hits = {data['hits']}, Faults = {data['faults']}\n"
+            output += f"{algo}: Page Hits = {data['hits']}, Page Faults = {data['faults']}\n"
         self.result_text.setText(output)
 
     def show_visualization(self, fig):

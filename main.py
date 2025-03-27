@@ -1,7 +1,7 @@
 import sys
 from PyQt6.QtWidgets import (QApplication, QWidget, QVBoxLayout, QPushButton, 
                             QLabel, QFrame, QScrollArea, QHBoxLayout)
-from PyQt6.QtGui import QFont, QPixmap, QIcon
+from PyQt6.QtGui import QFont, QPixmap, QIcon, QPainter, QColor
 from PyQt6.QtCore import Qt, QSize
 
 # Import the actual GUI implementations from relevant modules
@@ -22,7 +22,7 @@ class MainGUI(QWidget):
 
         self.background_label = QLabel(self)
         pixmap = QPixmap("memory_image.webp")
-        self.background_label.setPixmap(pixmap)
+        self.background_label.setPixmap(self.make_translucent(pixmap, 180))  # Adjust transparency
         self.background_label.setScaledContents(True)
         self.background_label.setGeometry(0, 0, self.width(), self.height())
 
@@ -118,6 +118,17 @@ class MainGUI(QWidget):
         """)
         button.clicked.connect(function)
         return button
+
+    def make_translucent(self, pixmap, opacity=150):
+        new_pixmap = QPixmap(pixmap.size())
+        new_pixmap.fill(Qt.GlobalColor.transparent)
+        
+        painter = QPainter(new_pixmap)
+        painter.setOpacity(opacity / 255)
+        painter.drawPixmap(0, 0, pixmap)
+        painter.end()
+        
+        return new_pixmap
 
     def open_paging_gui(self):
         self.paging_window = PagingGUI()

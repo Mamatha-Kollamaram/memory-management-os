@@ -3,26 +3,25 @@
 This project explores different memory management strategies in operating systems, including **Paging, Segmentation, and Virtual Memory**. It demonstrates how these techniques optimize memory allocation, enhance resource utilization, and improve system performance.
 
 ## Features  
-- Implementation of **Paging, Segmentation, and Virtual Memory** in Python  
+- Implementation of **Paging, Segmentation, and Virtual Memory** in Python with GUI support  
 - **Logical-to-Physical Address Translation**  
 - **Page Fault Handling** and **Segment Fault Detection**  
 - Performance analysis of memory management techniques  
 - **Comparison of different page replacement algorithms (FIFO, LRU, Optimal)**  
-- **Graphical representation of performance metrics**  
+- **Graphical User Interface (GUI) for better interaction**  
 
 ---
 
 ## **1. Paging System Implementation**  
 
-This project implements a **Paging System** in Python to simulate **memory address translation**.  
-Paging helps manage memory efficiently by dividing it into **fixed-size pages**.
+This project implements a **Paging System** in Python to simulate **memory address translation**. Paging helps manage memory efficiently by dividing it into **fixed-size pages**.
 
 ### **Features:**
 - Dynamically allocates pages to processes  
 - Converts **logical addresses** to **physical addresses**  
 - Detects **page faults** when a page is missing  
 - Compares **FIFO, LRU, and Optimal page replacement algorithms**  
-- **Displays page faults and execution time using bar graphs**  
+- **Displays results using a graphical interface**  
 
 ### **How to Run the Paging Code**  
 
@@ -33,15 +32,11 @@ Paging helps manage memory efficiently by dividing it into **fixed-size pages**.
    ```
 2. Run the program using Python:
    ```sh
-   python paging.py
+   python main.py
    ```
 
 ### **Expected Output:**
-```
-Refer to example_output.txt for detailed expected outputs.
-```
-
-Additionally, a **graph will be generated** showing the performance of different algorithms.
+Refer to `example_output.txt` for detailed expected outputs.
 
 ---
 
@@ -54,24 +49,18 @@ Segmentation is a memory management technique that divides a process into variab
 - Uses **variable-sized** memory segments  
 - Performs **logical-to-physical address translation**  
 - Detects **segment faults** when an invalid segment or offset is accessed  
-- **Visualizes memory allocation per process**  
-- **Displays translation success vs. faults using bar graphs**  
+- **Visualizes memory allocation per process in GUI**  
+- **Displays translation success vs. faults using interactive UI**  
 
 ### **How to Run the Segmentation Code**  
 
 Run the following command:
 ```sh
-python segmentation.py
+python main.py
 ```
 
 ### **Expected Output:**
-```
-Refer to example_output.txt for detailed expected outputs. 
-```
-
-Additionally, two **graphs will be generated**:
-1. **Memory allocation visualization** displaying segments per process.
-2. **Address translation performance** comparing successful translations vs. faults.
+Refer to `example_output.txt` for detailed expected outputs.
 
 ---
 
@@ -85,21 +74,17 @@ Virtual memory allows a system to use **more memory than physically available** 
 - Handles **page faults** when a required page is not in memory  
 - Maps **logical addresses to physical memory frames**  
 - **Compares FIFO, LRU, and Optimal page replacement algorithms**  
-- **Generates comparative performance graphs for all algorithms**  
+- **GUI-based visualization for better understanding**  
 
 ### **How to Run the Virtual Memory Code**  
 
 Run the following command:
 ```sh
-python virtual_memory.py
+python main.py
 ```
 
 ### **Expected Output:**
-```
-Refer to example_output.txt for detailed expected outputs. 
-```
-
-Additionally, **A performance graph** will be generated, representing performance of all the algorithms.
+Refer to `example_output.txt` for detailed expected outputs.
 
 ---
 
@@ -107,14 +92,26 @@ Additionally, **A performance graph** will be generated, representing performanc
 
 ```
 memory-management-os/  
-│── paging.py                 # Paging system implementation  
-│── segmentation.py           # Segmentation system implementation  
-│── virtual_memory.py         # Virtual memory system implementation  
-│── README.md                 # Project documentation  
-│── example_output.txt        # Sample outputs from execution  
-│── paging_visuals.png        # Generated during execution (visualization of page replacement algorithms)
-│── segmentation_visuals.png  # Generated during execution (visualization of segmentation results)
-│── virtual_memory_visuals.png # Generated during execution (visualization of virtual memorypaging_visuals.png )      
+│── icons/                   # Contains UI icons  
+│── paging/                  # Paging system implementation  
+│   │── p_main.py            # Main file for paging GUI  
+│   │── paging.py            # Paging logic implementation  
+│   │── paging_gui.py        # GUI for Paging  
+│   │── __init__.py          # Package init file  
+│── segmentation/            # Segmentation system implementation  
+│   │── s_main.py            # Main file for segmentation GUI  
+│   │── segmentation.py      # Segmentation logic implementation  
+│   │── segmentation_gui.py  # GUI for Segmentation  
+│   │── __init__.py          # Package init file  
+│── virtual-memory/          # Virtual memory system implementation  
+│   │── vm_main.py           # Main file for virtual memory GUI  
+│   │── virtual_memory.py    # Virtual memory logic implementation  
+│   │── virtual_memory-gui.py # GUI for Virtual Memory  
+│   │── __init__.py          # Package init file  
+│── main.py                  # Integrates all memory management techniques  
+│── example_output.txt       # Sample outputs from execution  
+│── memory_image.webp        # Image representation of memory management concepts  
+│── README.md                # Project documentation  
 ```
 
 ---
@@ -126,11 +123,9 @@ memory-management-os/
    git clone https://github.com/Mamatha-Kollamaram/memory-management-os.git  
    cd memory-management-os  
    ```
-2. Run the desired memory management program:  
+2. Run the integrated GUI program:  
    ```sh
-   python paging.py  
-   python segmentation.py  
-   python virtual_memory.py  
+   python main.py  
    ```
 
 ---
@@ -146,7 +141,7 @@ memory-management-os/
    ```
 3. Commit with a meaningful message:
    ```sh
-   git commit -m "Updated documentation and added visuals information"
+   git commit -m "Updated GUI and fixed address translation issues"
    ```
 4. Push the changes to GitHub:
    ```sh
@@ -157,13 +152,14 @@ memory-management-os/
 
 ## **Contributors**  
 - **Mamatha Kollamaram**  
-- **Kandula Venkata Sivakrishna Reddy**
-- **Chinthala Sai**
+- **Kandula Venkata Sivakrishna Reddy**  
+- **Chinthala Sai**  
+
 ---
 
 ## **Future Enhancements**  
 - Implementing **TLB (Translation Lookaside Buffer) for faster address translation**  
-- Adding **GUI-based visualization for memory management**  
-- Simulating **different page replacement algorithms (FIFO, LRU, Optimal)**  
-- **Implementing Working Set Model for better page replacement**  
+- **Advanced memory visualization techniques**  
+- Adding **real-time paging and segmentation simulation**  
+- Simulating **hybrid memory management models**  
 
