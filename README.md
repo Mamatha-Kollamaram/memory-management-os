@@ -166,3 +166,4 @@ memory-management-os/
 - Adding **GUI-based visualization for memory management**  
 - Simulating **different page replacement algorithms (FIFO, LRU, Optimal)**  
 - **Implementing Working Set Model for better page replacement**  
+
